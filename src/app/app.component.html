@@ -1,44 +1,6 @@
-
-<div class="container">
-  <div class="row">
-    <div class="col-md-8 col-md-offset-2">
-      <div class="row">
-        <div class="col-md-3">
-          <div class="tabs-button">
-            <div class="row">
-              <div class="col-md-12">
-                <button class="btn  tabs tab1" (click)="changeTab('flight')" [ngClass]="{'btn-primary': activeTab=='flight'}">
-                  Flights
-                </button>
-              </div>
-            </div>
-            <div class="row">
-              <div class="col-md-12">
-                <button class="btn tabs tab2" (click)="changeTab('hotels')" [ngClass]="{'btn-primary': activeTab=='hotels'}">
-                  Hotels
-                </button>
-              </div>
-            </div>
-            <div class="row">
-              <div class="col-md-12">
-                <button class="btn tabs tab3" (click)="changeTab('cars')" [ngClass]="{'btn-primary': activeTab=='cars'}">
-                  Cars
-                </button>
-              </div>
-            </div>
-          </div>
-        </div>
-        <div class="content-tabs col-md-9">
-          <app-flights *ngIf="activeTab=='flight'" (refresh)="refresh('flight')"></app-flights>
-          <app-hotels *ngIf="activeTab=='hotels'" (refresh)="refresh('hotels')"></app-hotels>
-          <app-cars *ngIf="activeTab=='cars'" (refresh)="refresh('cars')"></app-cars>
-        </div>
-      </div>
-    </div>
-  </div>
-  <div class="row listSearch">
-    <div class="col-md-8 col-md-offset-2">
-      <app-listsearch [listSearch]="listSearchData" [listname]="activeTab" (emitDelete)="refresh(activeTab)"></app-listsearch>
-    </div>
-  </div>
+<div class="main">
+  <app-header></app-header>
+  <main>
+    <router-outlet></router-outlet>
+  </main>
 </div>

@@ -1,0 +1,105 @@
+<p class="alert-danger" *ngIf="error">
+  all fields required
+</p>
+<p class="alert-success" *ngIf="success">
+  search success
+</p>
+<form (submit)="formSubmit($event,myForm.value)" #myForm="ngForm" >
+  <div class="row">
+    <div class="col-xs-6 form-group">
+      <input type="text"
+             class="form-control validate"
+             placeholder="Start date"
+             bsDatepicker
+             required
+             #start="ngModel"
+             name="start"
+             [(ngModel)]="myForm.start"
+      >
+      <div [hidden]="!(start.invalid && start.touched)"
+           class="alert alert-danger">
+        Field is required
+      </div>
+    </div>
+    <div class="col-xs-6 form-group">
+      <input type="text" class="form-control validate"
+             placeholder="End date"
+             bsDatepicker
+             required
+             #end="ngModel"
+             name="end"
+             [(ngModel)]="myForm.end"
+      >
+      <div [hidden]="!(end.invalid && end.touched)"
+           class="alert alert-danger">
+        Field is required
+      </div>
+    </div>
+  </div>
+
+
+  <div class="row" >
+    <div class="col-md-12">
+        <input type="text"
+               class="form-control"
+               required
+               [(ngModel)]="myForm.item1"
+               name="item1"
+               placeholder="From city"
+               #item1="ngModel"
+        >
+        <div [hidden]="!(item1.invalid && item1.touched)"
+             class="alert alert-danger">
+          Field is required
+        </div>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-md-12">
+      <input type="text"
+             class="form-control"
+             name="item2"
+             [(ngModel)]="myForm.item2"
+             placeholder="To city"
+             #item2="ngModel"
+             required
+      >
+      <div [hidden]="!(item2.invalid && item2.touched)"
+           class="alert alert-danger">
+        Field is required
+      </div>
+    </div>
+  </div>
+
+
+
+
+
+
+  <!--<div class="row" *ngIf="false">-->
+    <!--<div class="col-md-12">-->
+      <!--<select>-->
+        <!--<option value="">5 starts</option>-->
+        <!--<option value="">4 starts</option>-->
+        <!--<option value="">3 starts</option>-->
+      <!--</select>-->
+    <!--</div>-->
+  <!--</div>-->
+  <!--<div class="row"  *ngIf="false">-->
+    <!--<div class="col-md-12">-->
+      <!--<input type="text" class="form-control validate" placeholder="To city"  required>-->
+    <!--</div>-->
+  <!--</div>-->
+
+
+
+
+  <div class="row">
+    <div class="col-xs-12 text-right">
+      <a role="button" class="btn btn-link" (click)="myForm.reset();"  >reset</a>
+      <button class="btn btn-primary" type="submit" [disabled]="myForm.invalid">Search</button>
+    </div>
+  </div>
+
+
+</form>

@@ -1,14 +1,23 @@
 import { Injectable } from '@angular/core';
+import {SearchListmodel} from "../models/searchListModels";
 
 @Injectable()
 export class LocalStorageUpdateService {
+
+
+  public searchListmodel: SearchListmodel ;
 
   constructor() { }
 
 
 
-  rewriteStorage(name:string,obj:any){
-    localStorage.setItem(name,JSON.stringify(obj));
+
+
+
+
+
+  rewriteStorage(obj:SearchListmodel){
+    localStorage.setItem('listData',JSON.stringify(obj));
   }
 
   getLocalStorage(nameList:string):any[]{
@@ -19,19 +28,15 @@ export class LocalStorageUpdateService {
     }
   }
 
-  addNewItem(nameList:string,obj){
-    let bufferObj = [];
-    if(localStorage.getItem(nameList)){
-      bufferObj = JSON.parse(localStorage.getItem(nameList));
-    }
-    bufferObj.push(obj);
-    this.rewriteStorage(nameList,bufferObj)
+  addNewItem(obj){
+    this.rewriteStorage(obj);
   }
 
   deleteItem(nameList:string,index:number){
     let bufferObj = JSON.parse(localStorage.getItem(nameList));
+
     bufferObj.splice(index,1);
-    this.rewriteStorage(nameList,bufferObj)
+    this.rewriteStorage(bufferObj)
   }
 
 

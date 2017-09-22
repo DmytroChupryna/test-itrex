@@ -2,28 +2,24 @@ import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 
 import { AppComponent } from './app.component';
-import { BsDatepickerModule } from 'ngx-bootstrap/datepicker';
-import { ReactiveFormsModule } from "@angular/forms";
 
-import { FlightsComponent } from './flights/flights.component';
-import { HotelsComponent } from './hotels/hotels.component';
-import { CarsComponent } from './cars/cars.component';
 
 import {LocalStorageUpdateService} from "./services/local-storage-update.service";
-import { ListsearchComponent } from './listsearch/listsearch.component';
+import { HomeComponent } from './home/home.component';
+import { NotFoundComponent } from './not-found-component/not-found-component.component';
+import { HeaderComponent } from './header/header.component';
+import {AppRoutingModule} from "./app.routing";
 
 @NgModule({
   declarations: [
     AppComponent,
-    FlightsComponent,
-    HotelsComponent,
-    CarsComponent,
-    ListsearchComponent
+    HomeComponent,
+    NotFoundComponent,
+    HeaderComponent
   ],
   imports: [
     BrowserModule,
-    ReactiveFormsModule,
-    BsDatepickerModule.forRoot()
+    AppRoutingModule
   ],
   providers: [
     LocalStorageUpdateService

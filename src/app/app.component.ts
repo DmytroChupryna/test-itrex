@@ -15,13 +15,9 @@ export class AppComponent implements OnInit {
 
   ngOnInit(){
     this.listSearchData = this.lsUpdate.getLocalStorage('flight');
-
   }
 
-  changeTab(tab:string){
-    this.activeTab = tab;
-    this.listSearchData = this.lsUpdate.getLocalStorage(tab);
-  }
+
   refresh(tab:string){
     this.listSearchData = this.lsUpdate.getLocalStorage(tab);
   }
