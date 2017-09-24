@@ -1,15 +1,15 @@
 <div class="card" *ngIf="listSearch.length>0">
-<h3>History search of "{{listname}}"</h3>
+<h3>History of search</h3>
     <ul class="list-group list-group-flush">
       <li class="list-group-item" *ngFor="let item of listSearch;let i = index;">
 
-        <p class="date_start">{{item.start}}</p>
-        <p class="date_end">{{item.end}}</p>
+        <p class="date_start">{{item.start | date: 'dd/MM/yyyy'}}</p>
+        <p class="date_end">{{item.end | date: 'dd/MM/yyyy'}}</p>
 
         <p class="item1">{{item.item1}}</p>
         <p class="item2">{{item.item2}}</p>
 
-        <button class="btn btn-danger" (click)="deleteItem(listname,i)">Delete</button>
+        <button class="btn btn-danger" (click)="deleteItem(i)">Delete</button>
 
       </li>
     </ul>

@@ -4,7 +4,9 @@
 <p class="alert-success" *ngIf="success">
   search success
 </p>
-<form (submit)="formSubmit($event,myForm.value)" #myForm="ngForm" >
+<form (submit)="formSubmit($event,myForm.value); myForm.reset();" #myForm="ngForm" >
+
+  <!--dates-->
   <div class="row">
     <div class="col-xs-6 form-group">
       <input type="text"
@@ -36,10 +38,10 @@
       </div>
     </div>
   </div>
-
-
-  <div class="row" >
-    <div class="col-md-12">
+  <!--dates-->
+  <div *ngIf="typeForm=='flight'">
+    <div class="row" >
+      <div class="col-md-12">
         <input type="text"
                class="form-control"
                required
@@ -52,45 +54,104 @@
              class="alert alert-danger">
           Field is required
         </div>
+      </div>
     </div>
+    <div class="row">
+      <div class="col-md-12">
+        <input type="text"
+               class="form-control"
+               name="item2"
+               [(ngModel)]="myForm.item2"
+               placeholder="To city"
+               #item2="ngModel"
+               required
+        >
+        <div [hidden]="!(item2.invalid && item2.touched)"
+             class="alert alert-danger">
+          Field is required
+        </div>
+      </div>
+    </div>
+
   </div>
-  <div class="row">
-    <div class="col-md-12">
-      <input type="text"
-             class="form-control"
-             name="item2"
-             [(ngModel)]="myForm.item2"
-             placeholder="To city"
-             #item2="ngModel"
-             required
-      >
-      <div [hidden]="!(item2.invalid && item2.touched)"
-           class="alert alert-danger">
-        Field is required
+
+
+  <div *ngIf="typeForm=='hotels'">
+    <div class="row" >
+      <div class="col-md-12">
+        <select
+                class="form-control"
+                required
+                [(ngModel)]="myForm.item1"
+                name="item1"
+                #item1="ngModel"
+        >
+          <option disabled selected>Select</option>
+          <option value="5 starts">5 starts</option>
+          <option value="4 starts">4 starts</option>
+          <option value="3 starts">3 starts</option>
+        </select>
+        <div [hidden]="!(item1.invalid && item1.touched)"
+             class="alert alert-danger">
+          Field is required
+        </div>
+      </div>
+    </div>
+    <div class="row" >
+      <div class="col-md-12">
+        <input type="text" class="form-control validate"
+               placeholder="To city"
+               [(ngModel)]="myForm.item2"
+               name="item2"
+               #item2="ngModel"
+               required
+        >
+        <div [hidden]="!(item2.invalid && item2.touched)"
+             class="alert alert-danger">
+          Field is required
+        </div>
       </div>
     </div>
   </div>
 
-
-
-
-
-
-  <!--<div class="row" *ngIf="false">-->
-    <!--<div class="col-md-12">-->
-      <!--<select>-->
-        <!--<option value="">5 starts</option>-->
-        <!--<option value="">4 starts</option>-->
-        <!--<option value="">3 starts</option>-->
-      <!--</select>-->
-    <!--</div>-->
-  <!--</div>-->
-  <!--<div class="row"  *ngIf="false">-->
-    <!--<div class="col-md-12">-->
-      <!--<input type="text" class="form-control validate" placeholder="To city"  required>-->
-    <!--</div>-->
-  <!--</div>-->
-
+  <div *ngIf="typeForm=='cars'">
+    <div class="row" >
+      <div class="col-md-12">
+        <select
+                class="form-control"
+                required
+                [(ngModel)]="myForm.item1"
+                name="item1"
+                #item1="ngModel"
+        >
+          <option disabled selected>select</option>
+          <option value="gaz">gaz</option>
+          <option value="hybrid">hybrid</option>
+          <option value="electric">electric</option>
+        </select>
+        <div [hidden]="!(item1.invalid && item1.touched)"
+             class="alert alert-danger">
+          Field is required
+        </div>
+      </div>
+    </div>
+    <div class="row" >
+      <div class="col-md-12">
+        <input type="text" class="form-control validate"
+               placeholder="To city"
+               class="form-control"
+               [(ngModel)]="myForm.item2"
+               name="item2"
+               #item2="ngModel"
+               required
+        >
+        <div [hidden]="!(item2.invalid && item2.touched)"
+             class="alert alert-danger">
+          Field is required
+        </div>
+      </div>
+    </div>
+  </div>
 
 
 
@@ -100,6 +161,5 @@
       <button class="btn btn-primary" type="submit" [disabled]="myForm.invalid">Search</button>
     </div>
   </div>
-
 
 </form>

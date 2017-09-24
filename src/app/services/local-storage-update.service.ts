@@ -1,42 +1,48 @@
 import { Injectable } from '@angular/core';
-import {SearchListmodel} from "../models/searchListModels";
+import {Searchmodel} from "../models/searchmodel";
 
 @Injectable()
 export class LocalStorageUpdateService {
 
 
-  public searchListmodel: SearchListmodel ;
+  public searchListmodel: Searchmodel[]  = [];
 
   constructor() { }
 
+  addToList(obj:Searchmodel){
+    this.searchListmodel.push(obj);
+    this.rewriteStorage(this.searchListmodel)
+  }
 
-
-
-
-
-
-
-  rewriteStorage(obj:SearchListmodel){
+  rewriteStorage(obj:Searchmodel[]){
     localStorage.setItem('listData',JSON.stringify(obj));
   }
 
-  getLocalStorage(nameList:string):any[]{
-    if(localStorage.getItem(nameList)){
-      return JSON.parse(localStorage.getItem(nameList))
-    }else{
-      return [];
+  getData():Searchmodel[]{
+    if(localStorage.getItem('listData')){
+      this.searchListmodel = JSON.parse(localStorage.getItem('listData'))
     }
+    return this.searchListmodel;
   }
 
-  addNewItem(obj){
-    this.rewriteStorage(obj);
-  }
 
-  deleteItem(nameList:string,index:number){
-    let bufferObj = JSON.parse(localStorage.getItem(nameList));
 
-    bufferObj.splice(index,1);
-    this.rewriteStorage(bufferObj)
+
+  //
+  // getLocalStorage(nameList:string):any[]{
+  //   if(localStorage.getItem(nameList)){
+  //     return JSON.parse(localStorage.getItem(nameList))
+  //   }else{
+  //     return [];
+  //   }
+  // }
+
+
+
+
+  deleteItem(index:number){
+    this.searchListmodel.splice(index,1);
+    this.rewriteStorage(this.searchListmodel)
   }
 
 

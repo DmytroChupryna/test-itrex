@@ -11,11 +11,10 @@ import {Searchmodel} from "../models/searchmodel";
 export class FormSearchComponent implements OnInit {
 
 
-  // @Input() configFormFields:
+  @Input() typeForm: string = 'flight';
 
   @Output() refresh: EventEmitter<any> = new EventEmitter();
 
-  public formSend = new Searchmodel(new Date(),new Date(),'','') ;
 
 
   submitted = false;
@@ -31,31 +30,8 @@ export class FormSearchComponent implements OnInit {
 
 
   formSubmit(event,obj:Searchmodel){
-
+    this.lsUpdate.addToList(obj);
     this.submitted = true;
-
-
-
-    // if(this.flightForm.status === 'VALID'){
-    //   let objSend = {
-    //     start:`${this.flightForm.value.startdate.getDay()} - ${this.flightForm.value.startdate.getMonth()} - ${this.flightForm.value.startdate.getFullYear()}`,
-    //     end: `${this.flightForm.value.enddate.getDay()} - ${this.flightForm.value.enddate.getMonth()} - ${this.flightForm.value.enddate.getFullYear()}`,
-    //     item1: this.flightForm.value.item1,
-    //     item2: this.flightForm.value.item2
-    //   };
-    //   this.lsUpdate.addNewItem(listName,objSend);
-    //   this.flightForm.reset();
-    //   this.success = true;
-    //   setTimeout(()=>{
-    //     this.success = false;
-    //   },3000)
-    // }else{
-    //   this.error = true;
-    //   setTimeout(()=>{
-    //     this.error = false;
-    //   },3000)
-    // }
-    // this.refresh.emit();
   }
 
 

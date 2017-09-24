@@ -10,7 +10,6 @@ export class ListsearchComponent implements OnInit {
 
 
   @Input() listSearch: any[] = [];
-  @Input() listname: string = 'flight';
   @Output() emitDelete: EventEmitter<any> = new EventEmitter();
 
   constructor(
@@ -19,8 +18,8 @@ export class ListsearchComponent implements OnInit {
 
   ngOnInit() {
   }
-  deleteItem(name,i){
-    this.lsUpdate.deleteItem(name,i);
+  deleteItem(i){
+    this.lsUpdate.deleteItem(i);
     this.emitDelete.emit();
   }
 

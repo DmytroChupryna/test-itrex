@@ -7,19 +7,12 @@ import {LocalStorageUpdateService} from "./services/local-storage-update.service
   styleUrls: ['./app.component.css']
 })
 export class AppComponent implements OnInit {
-  public activeTab:string = 'flight';
-  public listSearchData: any[];
-  constructor(
-      private lsUpdate: LocalStorageUpdateService,
-  ) { }
-
-  ngOnInit(){
-    this.listSearchData = this.lsUpdate.getLocalStorage('flight');
-  }
+  constructor() { }
+  ngOnInit(){}
 
 
   refresh(tab:string){
-    this.listSearchData = this.lsUpdate.getLocalStorage(tab);
+    // this.listSearchData = this.lsUpdate.getLocalStorage(tab);
   }
 
 }
